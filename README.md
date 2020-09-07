@@ -1,6 +1,6 @@
 # locker
 
-A new Flutter application.
+A new Flutter application.For personal goods management.
 
 ## Getting Started
 
