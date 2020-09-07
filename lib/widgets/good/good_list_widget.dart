@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:locker/beans/goods.dart';
 import 'package:locker/config/page_status.dart';
-import 'package:locker/database/good_entry.dart';
 import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/widgets/empty_widget.dart';
 import 'package:locker/widgets/error_widget.dart';
 import 'package:locker/widgets/loading_widget.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_item_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_item_widget.dart';
 
 class GoodListWidget extends StatefulWidget {
   bool isAll;
@@ -31,11 +31,8 @@ class _GoodListWidgetState extends State<GoodListWidget> {
   BuildContext context;
   List<Map> goodList;
 
-
   @override
-  void initState() {
-
-  }
+  void initState() {}
 
   @override
   Widget build(BuildContext context) {
@@ -45,36 +42,34 @@ class _GoodListWidgetState extends State<GoodListWidget> {
       decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
       child: Consumer<GoodListProvider>(
         builder: (context, provider, child) {
-           if(provider.pageStatus == PageStatus.success && goodList != null){
-             goodList = provider.goodList;
-             return _buildGoodList();
-           }else{
-             return FutureBuilder(
-               future: widget.isAll?provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
-               builder: (context, snapShop) {
-                 if (snapShop.connectionState == ConnectionState.done) {
-                   if (provider.pageStatus == PageStatus.success) {
-                     goodList = provider.goodList;
-                     return _buildGoodList();
-                   } else if (provider.pageStatus == PageStatus.empty) {
-                     return EmptyWidget();
-                   } else if(PageStatus.error == provider.pageStatus){
-                     return CustomErrorWidget();
-                   }else{
-                     return LoadingWidget();
-                   }
-                 } else {
-                   return LoadingWidget();
-                 }
-               },
-             );
-           }
+          if (provider.pageStatus == PageStatus.success && goodList != null) {
+            goodList = provider.goodList;
+            return _buildGoodList();
+          } else {
+            return FutureBuilder(
+              future: widget.isAll ? provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
+              builder: (context, snapShop) {
+                if (snapShop.connectionState == ConnectionState.done) {
+                  if (provider.pageStatus == PageStatus.success) {
+                    goodList = provider.goodList;
+                    return _buildGoodList();
+                  } else if (provider.pageStatus == PageStatus.empty) {
+                    return EmptyWidget();
+                  } else if (PageStatus.error == provider.pageStatus) {
+                    return CustomErrorWidget();
+                  } else {
+                    return LoadingWidget();
+                  }
+                } else {
+                  return LoadingWidget();
+                }
+              },
+            );
+          }
         },
       ),
     );
   }
-
-
 
   _buildGoodList() {
     return Container(

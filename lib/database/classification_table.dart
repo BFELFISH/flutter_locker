@@ -4,8 +4,6 @@ import 'package:locker/beans/classification.dart';
 import 'package:locker/database/base_database_helper.dart';
 import 'package:locker/database/classification_entry.dart';
 import 'package:locker/database/sql_string.dart';
-import 'package:locker/utils/log_utils.dart';
-import 'package:locker/utils/toast_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ClassificationTable extends BaseDbHelper {

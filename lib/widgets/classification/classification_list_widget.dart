@@ -5,20 +5,18 @@ import 'package:locker/beans/classification.dart';
 import 'package:locker/config/page_status.dart';
 import 'package:locker/providers/classification_list_provider.dart';
 import 'package:locker/routes/navigator_utils.dart';
-import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
 import 'package:provider/provider.dart';
 
-import 'classification_list_item_widget.dart';
 import '../empty_widget.dart';
 import '../error_widget.dart';
 import '../loading_widget.dart';
+import 'classification_list_item_widget.dart';
 
 class ClassificationListWidget extends StatelessWidget {
   List<Map> classifications;
-  Function(BuildContext context,Classification classification) tapItemCallBack;
-
+  Function(BuildContext context, Classification classification) tapItemCallBack;
 
   ClassificationListWidget(this.tapItemCallBack);
 
@@ -52,12 +50,9 @@ class ClassificationListWidget extends StatelessWidget {
     );
   }
 
-
   _buildClassList() {
     return Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(begin: Alignment.topLeft,end: Alignment.bottomRight,colors: pageBg)
-      ),
+      decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
       padding: const EdgeInsets.all(8.0),
       child: AnimationLimiter(
         child: GridView.builder(
@@ -78,7 +73,10 @@ class ClassificationListWidget extends StatelessWidget {
                   child: FadeInAnimation(
                     child: index == classifications.length
                         ? _addClassificationWidget(context)
-                        : ClassListItemWidget(classification: Classification.fromJsonMap(classifications[index]),tapItemCallBack: tapItemCallBack,),
+                        : ClassListItemWidget(
+                            classification: Classification.fromJsonMap(classifications[index]),
+                            tapItemCallBack: tapItemCallBack,
+                          ),
                   )),
             );
           },
@@ -94,17 +92,9 @@ class ClassificationListWidget extends StatelessWidget {
         NavigatorUtils.toAddClass(context);
       },
       borderRadius: BorderRadius.circular(15),
-      gradient: LinearGradient(begin: Alignment.topLeft,end: Alignment.bottomRight,colors: photo),
+      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: photo),
       child: Container(
-        decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: yellow_f9f7d9,
-                  offset: Offset(2.0,2.0),
-                  blurRadius: 10.0
-              )
-            ]
-        ),
+        decoration: BoxDecoration(boxShadow: [BoxShadow(color: yellow_f9f7d9, offset: Offset(2.0, 2.0), blurRadius: 10.0)]),
         width: 50,
         height: 50,
         child: Icon(

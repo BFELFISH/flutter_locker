@@ -1,7 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:locker/values/colors.dart';
 
 class CheckItem extends StatefulWidget {

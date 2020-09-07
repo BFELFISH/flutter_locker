@@ -38,8 +38,12 @@ class RouterHandler {
     return AddLocationPage();
   });
   static var addLocationDetailHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-    return AddLocationDetailPage(Location(id: int.parse(params[LocationEntry.columnId].first),locationName: params[LocationEntry.columnName].first,pic: params[LocationEntry.columnPic].first));
-  });static var manageClassHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
+    return AddLocationDetailPage(Location(
+        id: int.parse(params[LocationEntry.columnId].first),
+        locationName: params[LocationEntry.columnName].first,
+        pic: params[LocationEntry.columnPic].first));
+  });
+  static var manageClassHandler = Handler(handlerFunc: (BuildContext context, Map<String, List<String>> params) {
     return ManageClassPage();
   });
 }

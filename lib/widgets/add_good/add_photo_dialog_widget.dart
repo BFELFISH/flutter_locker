@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';

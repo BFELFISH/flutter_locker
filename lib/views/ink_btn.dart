@@ -26,7 +26,15 @@ class InkBtn extends StatelessWidget {
   ///渐变背景
   Gradient gradient;
 
-  InkBtn({this.color = Colors.transparent, this.borderRadius,this.onLongPress, this.onTap, this.gradient, this.child, this.highlightColor, this.splashColor})
+  InkBtn(
+      {this.color = Colors.transparent,
+      this.borderRadius,
+      this.onLongPress,
+      this.onTap,
+      this.gradient,
+      this.child,
+      this.highlightColor,
+      this.splashColor})
       : assert(child != null);
 
   @override
@@ -47,7 +55,7 @@ class InkBtn extends StatelessWidget {
               onTap();
             }
           },
-          onLongPress: (){
+          onLongPress: () {
             if (this.onLongPress != null) {
               onLongPress();
             }

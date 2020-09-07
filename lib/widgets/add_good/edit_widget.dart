@@ -22,7 +22,7 @@ class EditWidget extends StatefulWidget {
 
 class EditWidgetState extends State<EditWidget> {
   final TextEditingController textEditingController = TextEditingController();
-  AddGoodProvider provider ;
+  AddGoodProvider provider;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class EditWidgetState extends State<EditWidget> {
     if (widget.editLable == '提前提醒天数') {
       initWarnDays();
     }
-    if(provider.editValue[widget.editLable] != null){
+    if (provider.editValue[widget.editLable] != null) {
       textEditingController.text = provider.editValue[widget.editLable];
     }
   }

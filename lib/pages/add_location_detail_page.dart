@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:locker/beans/location.dart';
 import 'package:locker/beans/location_detial.dart';
 import 'package:locker/providers/location_detail_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/assert_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';

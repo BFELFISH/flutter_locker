@@ -4,7 +4,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:locker/beans/classification.dart';
 import 'package:locker/config/page_status.dart';
 import 'package:locker/database/classification_entry.dart';
-import 'package:locker/providers/add_good_provider.dart';
 import 'package:locker/providers/classification_list_provider.dart';
 import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/utils/assert_utils.dart';
@@ -91,9 +90,7 @@ class _ManageClassPageState extends State<ManageClassPage> {
           caption: '编辑',
           icon: Icons.edit,
           color: main_color,
-          onTap: () {
-
-          },
+          onTap: () {},
         ),
         IconSlideAction(
           caption: '删除',

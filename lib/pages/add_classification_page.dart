@@ -1,15 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:locker/beans/classification.dart';
 import 'package:locker/providers/classification_list_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
-import 'package:locker/utils/assert_utils.dart';
-import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
-import 'package:locker/values/colors.dart';
-import 'package:locker/views/ink_btn.dart';
 import 'package:locker/widgets/add_class_or_location_widget.dart';
 import 'package:provider/provider.dart';
 

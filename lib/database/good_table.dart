@@ -1,9 +1,8 @@
 import 'package:locker/beans/goods.dart';
 import 'package:locker/database/base_database_helper.dart';
-import 'package:locker/database/sql_manager.dart';
 import 'package:locker/database/sql_string.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:sqflite/sqflite.dart';
+
 import 'good_entry.dart';
 
 class GoodTable extends BaseDbHelper {

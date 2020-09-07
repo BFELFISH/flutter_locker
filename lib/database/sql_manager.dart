@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:locker/beans/location_detial.dart';
 import 'package:locker/database/classification_table.dart';
 import 'package:locker/database/good_table.dart';
 import 'package:locker/database/location_details_table.dart';

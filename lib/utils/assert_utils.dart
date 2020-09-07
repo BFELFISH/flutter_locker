@@ -1,8 +1,8 @@
-class AssertUtils{
-  static String getAssertImagePath(String imageName,{String postfix = '.png'}){
-    if(imageName.startsWith('images/')){
+class AssertUtils {
+  static String getAssertImagePath(String imageName, {String postfix = '.png'}) {
+    if (imageName.startsWith('images/')) {
       return imageName;
-    }else{
+    } else {
       return 'images/$imageName$postfix';
     }
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:locker/database/sql_manager.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 /***

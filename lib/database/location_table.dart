@@ -1,9 +1,8 @@
 
+import 'package:locker/beans/location.dart';
 import 'package:locker/database/base_database_helper.dart';
 import 'package:locker/database/location_entry.dart';
 import 'package:locker/database/sql_string.dart';
-import 'package:locker/beans/location.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocationTable extends BaseDbHelper {

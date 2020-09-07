@@ -3,7 +3,7 @@ import 'package:locker/beans/location.dart';
 import 'package:locker/beans/location_detial.dart';
 import 'package:locker/widgets/location_detail_list_widget.dart';
 
-class SelectLocationDetailPage extends StatelessWidget  {
+class SelectLocationDetailPage extends StatelessWidget {
   final Location location;
   final Function(LocationDetail locationDetail) tapItemCallBack;
 
@@ -11,6 +11,6 @@ class SelectLocationDetailPage extends StatelessWidget  {
 
   @override
   Widget build(BuildContext context) {
-    return LocationDetaiListlWidget(location,tapItemCallBack);
+    return LocationDetaiListlWidget(location, tapItemCallBack);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:locker/beans/location.dart';
 import 'package:locker/providers/location_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/widgets/add_class_or_location_widget.dart';
 import 'package:provider/provider.dart';

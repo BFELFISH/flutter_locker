@@ -25,5 +25,4 @@ class ToastUtils {
       LogUtils.w('ToastUtils', "toast content is empty");
     }
   }
-
 }

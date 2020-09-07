@@ -2,7 +2,6 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:locker/beans/location_detial.dart';
 import 'package:locker/database/sql_manager.dart';
 import 'package:locker/providers/add_good_provider.dart';
 import 'package:locker/providers/classification_list_provider.dart';
@@ -10,7 +9,6 @@ import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/providers/location_detail_provider.dart';
 import 'package:locker/providers/location_provider.dart';
 import 'package:locker/routes/routes.dart';
-import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:provider/provider.dart';
 

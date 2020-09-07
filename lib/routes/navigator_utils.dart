@@ -9,10 +9,9 @@ class NavigatorUtils {
     Routes.navigateTo(context, Routes.home, transitionDuration: Duration(milliseconds: 500), transitionType: TransitionType.fadeIn, replace: true);
   }
 
-  static toAddGood(context,{Good good}) {
-    Routes.navigateTo(context, Routes.addGood, transitionDuration: Duration(milliseconds: 500), transitionType: TransitionType.inFromRight,params: {
-
-    });
+  static toAddGood(context, {Good good}) {
+    Routes.navigateTo(context, Routes.addGood,
+        transitionDuration: Duration(milliseconds: 500), transitionType: TransitionType.inFromRight, params: {});
   }
 
   static toSelectClass(context) async {
@@ -42,6 +41,4 @@ class NavigatorUtils {
       LocationEntry.columnPic: location.pic
     });
   }
-
-
 }

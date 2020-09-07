@@ -1,23 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
-import 'package:locker/config/page_status.dart';
-import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/utils/assert_utils.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
 import 'package:locker/widgets/drawer_left_widget.dart';
-import 'package:locker/widgets/empty_widget.dart';
-import 'package:locker/widgets/error_widget.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_item_widget.dart';
+
 import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_widget.dart';
-import 'package:locker/widgets/loading_widget.dart';
 import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/search_widget.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class GoodListPage extends StatefulWidget {
   @override

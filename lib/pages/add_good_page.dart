@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:locker/beans/goods.dart';
 import 'package:locker/database/good_entry.dart';
 import 'package:locker/providers/add_good_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/assert_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';

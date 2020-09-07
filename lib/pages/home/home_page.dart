@@ -1,18 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:locker/routes/navigator_utils.dart';
+import 'package:locker/values/colors.dart';
+import 'package:locker/values/icon.dart';
+
 import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/good_list_page.dart';
 import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/location_page.dart';
 import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/settings_page.dart';
-import 'package:locker/providers/classification_list_provider.dart';
-import 'package:locker/providers/location_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
-import 'package:locker/utils/log_utils.dart';
-import 'package:locker/values/colors.dart';
-import 'package:locker/values/icon.dart';
-import 'package:provider/provider.dart';
-import 'package:provider/single_child_widget.dart';
+
 import 'classification_page.dart';
 
 class HomePage extends StatefulWidget {

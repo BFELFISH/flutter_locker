@@ -46,7 +46,7 @@ class _SearchState extends State<Search> {
           Expanded(
             child: TextField(
               maxLines: 1,
-              inputFormatters:[LengthLimitingTextInputFormatter(20)],
+              inputFormatters: [LengthLimitingTextInputFormatter(20)],
               keyboardType: TextInputType.text,
               autofocus: false,
               controller: _textEditingController,
@@ -57,19 +57,19 @@ class _SearchState extends State<Search> {
                 focusedBorder: _inputBorder,
               ),
               style: TextStyle(fontSize: 18),
-              onEditingComplete: (){
-               if(_textEditingController.text == null||_textEditingController.text.isEmpty){
-                 ToastUtils.show('请输入物品名称');
-               }else{
-                 Navigator.push(
-                     context,
-                     MaterialPageRoute(
-                         builder: (context) => GoodListWidget(
-                           false,
-                           columns: [GoodEntry.columnName],
-                           values: ["${_textEditingController.text}"],
-                         )));
-               }
+              onEditingComplete: () {
+                if (_textEditingController.text == null || _textEditingController.text.isEmpty) {
+                  ToastUtils.show('请输入物品名称');
+                } else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => GoodListWidget(
+                                false,
+                                columns: [GoodEntry.columnName],
+                                values: ["${_textEditingController.text}"],
+                              )));
+                }
               },
             ),
           )

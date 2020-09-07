@@ -5,7 +5,6 @@ import 'package:locker/database/classification_entry.dart';
 import 'package:locker/database/classification_table.dart';
 import 'package:locker/database/good_entry.dart';
 import 'package:locker/providers/good_list_provider.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:sqflite/sqflite.dart';
 

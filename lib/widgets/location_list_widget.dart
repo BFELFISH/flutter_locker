@@ -8,7 +8,6 @@ import 'package:locker/pages/select_location_details_page.dart';
 import 'package:locker/providers/location_provider.dart';
 import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/assert_utils.dart';
-import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
 import 'package:locker/widgets/empty_widget.dart';

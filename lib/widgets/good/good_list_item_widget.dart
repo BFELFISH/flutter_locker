@@ -9,14 +9,14 @@ import 'package:locker/providers/classification_list_provider.dart';
 import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/providers/location_detail_provider.dart';
 import 'package:locker/providers/location_provider.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/values/text_style.dart';
 import 'package:locker/views/ink_btn.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/long_press_good_item_dialog.dart';
 import 'package:provider/provider.dart';
+
+import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/long_press_good_item_dialog.dart';
 
 class GoodListItem extends StatelessWidget {
   ///物品实例

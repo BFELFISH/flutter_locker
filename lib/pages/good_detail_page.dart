@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locker/beans/goods.dart';
-import 'package:locker/pages/add_good_page.dart';
 import 'package:locker/providers/good_list_provider.dart';
-import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/assert_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';

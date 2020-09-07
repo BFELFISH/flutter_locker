@@ -27,7 +27,7 @@ class SelectWidgetState extends State<SelectWidget> {
   @override
   void initState() {
     super.initState();
-    provider = Provider.of<AddGoodProvider>(context,listen: false);
+    provider = Provider.of<AddGoodProvider>(context, listen: false);
     if (widget.tag != '分类' && widget.tag != '位置') {
       if (provider.editValue[widget.tag] == null) {
         selected = DateTime.now().toString().substring(0, 11);

@@ -25,11 +25,31 @@ const Color pink_fbecec = Color(0xfffbecec);
 
 const List<Color> editWidget1 = ([yellow_f6f4e6, yellow_f9f7d9]);
 const List<Color> details1 = ([pink_fbecec, pink_fccbcb]);
-const List<Color> editWidget2 = ([pink_fbecec,pink_ffe4e4, ]);
-const List<Color> photo = ([yellow_f6f4e6,yellow_ffe78f, ]);
-const List<Color> pink2blue = ([pink_fbecec,blue_d6e0f0, ]);
-const List<Color> blue2pink = ([blue_d6e0f0,pink_fbecec, ]);
-const List<Color> pageBg = ([yellow_f6f4e6,blue_d6e0f0, ]);
-const List<Color> good_details2 = ([yellow_fff591,yellow_f6f4e6, ]);
-const List<Color> good_details1 = ([pink_fccbcb,pink_fbecec, ]);
-
+const List<Color> editWidget2 = ([
+  pink_fbecec,
+  pink_ffe4e4,
+]);
+const List<Color> photo = ([
+  yellow_f6f4e6,
+  yellow_ffe78f,
+]);
+const List<Color> pink2blue = ([
+  pink_fbecec,
+  blue_d6e0f0,
+]);
+const List<Color> blue2pink = ([
+  blue_d6e0f0,
+  pink_fbecec,
+]);
+const List<Color> pageBg = ([
+  yellow_f6f4e6,
+  blue_d6e0f0,
+]);
+const List<Color> good_details2 = ([
+  yellow_fff591,
+  yellow_f6f4e6,
+]);
+const List<Color> good_details1 = ([
+  pink_fccbcb,
+  pink_fbecec,
+]);

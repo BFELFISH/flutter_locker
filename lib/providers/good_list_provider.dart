@@ -3,7 +3,6 @@ import 'package:locker/beans/goods.dart';
 import 'package:locker/config/page_status.dart';
 import 'package:locker/database/good_entry.dart';
 import 'package:locker/database/good_table.dart';
-import 'package:locker/utils/log_utils.dart';
 
 class GoodListProvider extends ChangeNotifier {
   final String TAG = 'GoodListProvider';

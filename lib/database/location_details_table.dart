@@ -2,10 +2,7 @@ import 'package:locker/beans/location_detial.dart';
 import 'package:locker/database/base_database_helper.dart';
 import 'package:locker/database/location_details_entry.dart';
 import 'package:locker/database/sql_string.dart';
-import 'package:locker/utils/log_utils.dart';
 import 'package:sqflite/sqflite.dart';
-
-import 'location_entry.dart';
 
 class LocationDetailsTable extends BaseDbHelper {
   LocationDetailsTable._internal();
