@@ -1,0 +1,185 @@
+name: locker
+description: A new Flutter application.
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^0.1.3
+
+  #路由管理 https://pub.dev/packages/fluro
+  fluro: ^1.6.3
+  #日志打印
+  quick_log: ^1.1.3
+  #本地数据库
+  sqflite: 1.3.1+1
+  #toast https://pub.dev/packages/fluttertoast
+  fluttertoast: 7.0.1
+
+  #状态管理 https://pub.dev/packages/provider
+  provider: ^4.3.1
+
+  # https://pub.dev/packages/shared_preferences
+  shared_preferences: ^0.5.8
+
+  #屏幕适配     https://pub.dev/packages/flutter_screenutil
+  flutter_screenutil: ^2.3.0
+  #列表加载动画
+  flutter_staggered_animations: ^0.1.2
+  #选择图片
+  image_picker: ^0.6.7
+  #抽屉
+  flutter_inner_drawer: ^0.5.7+2
+  #加载动画
+  flutter_spinkit: ^4.1.2
+  #列表项左/右滑操作
+  flutter_slidable: ^0.5.7
+  #国际化
+  flutter_localizations:
+    sdk: flutter
+  #下拉刷新
+  pull_to_refresh: ^1.6.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - images/splash.png
+    - images/search.png
+    - images/home.png
+    - images/kinds.png
+    - images/data.png
+    - images/personal.png
+    - images/settings.png
+    - images/add.png
+    - images/menu.png
+    - images/classification.png
+    - images/calendar.png
+    - images/location.png
+    - images/bottle.png
+    - images/clothes.png
+    - images/coffee.png
+    - images/flower.png
+    - images/game.png
+    - images/jewelry.png
+    - images/juice.png
+    - images/key.png
+    - images/letter.png
+    - images/lipstick.png
+    - images/make_up.png
+    - images/mask.png
+    - images/medicine.png
+    - images/pen.png
+    - images/photo_shop.png
+    - images/science.png
+    - images/shoes.png
+    - images/sport.png
+    - images/watch.png
+    - images/warn.png
+    - images/goods.png
+    - images/safe.png
+    - images/sync.png
+    - images/goto.png
+    - images/skirt.png
+    - images/snack.png
+    - images/sunglasses.png
+    - images/diploma.png
+    - images/coupon.png
+    - images/book.png
+    - images/cupboard.png
+    - images/bed.png
+    - images/bedside_table.png
+    - images/bedside_table2.png
+    - images/vanity_mirror.png
+    - images/fridge.png
+    - images/tv_table.png
+    - images/shelf.png
+    - images/shelf2.png
+    - images/dawer.png
+    - images/wine_cabinet.png
+    - images/coach.png
+    - images/box.png
+    - images/book_shelf.png
+    - images/study_table.png
+    - images/study_table2.png
+    - images/washbasin.png
+    - images/shoes_shelf.png
+    - images/wardrobe.png
+    - images/wardrobe2.png
+    - images/table.png
+    - images/edit.png
+    - images/delete.png
+    - images/empty.png
+    - images/error.png
+    - images/classification_setting.png
+    - images/location_setting.png
+
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: BottomNavigatorIcon
+      fonts:
+        - asset: icons/bottom_navigator.ttf
+    - family: ClassificationIcon
+      fonts:
+        - asset: icons/classification.ttf
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
