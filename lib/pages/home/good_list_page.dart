@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_drawer/inner_drawer.dart';
 import 'package:locker/utils/assert_utils.dart';
+import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
@@ -21,6 +22,8 @@ class _GoodListPageState extends State<GoodListPage> {
 
   @override
   Widget build(BuildContext context) {
+    LogUtils.d('GoodListPage', "key = ${widget.key}");
+
     return InnerDrawer(
       key: _innerDrawerKey,
       swipe: false,

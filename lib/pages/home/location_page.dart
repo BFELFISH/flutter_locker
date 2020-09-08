@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locker/beans/location_detial.dart';
 import 'package:locker/database/good_entry.dart';
+import 'package:locker/utils/log_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/widgets/good/good_list_widget.dart';
 import 'package:locker/widgets/location_list_widget.dart';
@@ -17,6 +18,8 @@ class _LocationPageState extends State<LocationPage> {
 
   @override
   Widget build(BuildContext context) {
+    LogUtils.d('LocationPage', "key = ${widget.key}");
+
     this.context = context;
     return Builder(builder: (context) {
       return Container(

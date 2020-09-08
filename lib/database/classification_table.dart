@@ -4,6 +4,7 @@ import 'package:locker/beans/classification.dart';
 import 'package:locker/database/base_database_helper.dart';
 import 'package:locker/database/classification_entry.dart';
 import 'package:locker/database/sql_string.dart';
+import 'package:locker/utils/toast_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ClassificationTable extends BaseDbHelper {
@@ -77,16 +78,21 @@ class ClassificationTable extends BaseDbHelper {
 
   ///更新数据库
   Future update(Classification bean) async {
-    var result = '' ;
-    try{
-       await db.rawUpdate(
-          "update ${ClassificationEntry.tableName} set ${ClassificationEntry.columnName} = ${bean.name},${ClassificationEntry.columnPic} = ${bean.pic} where ${ClassificationEntry.columnId} = ${bean.id}");
-    }on DatabaseException catch (error){
+    var result;
+    try {
+      result = await db.rawUpdate(
+          "update ${ClassificationEntry.tableName} set"
+          " ${ClassificationEntry.columnName} = ?,"
+          "${ClassificationEntry.columnPic} = ?"
+          " where ${ClassificationEntry.columnId} = ?",
+          ['${bean.name}', '${bean.pic}', bean.id]);
+    } on DatabaseException catch (error) {
+      ToastUtils.show('该分类已存在');
     }
     return result;
   }
 
-  Future delete(int id)async{
+  Future delete(int id) async {
     var result = await db.rawDelete('DELETE FROM ${ClassificationEntry.tableName} WHERE ${ClassificationEntry.columnId} = ?', ['$id']);
     return result;
   }
@@ -103,12 +109,12 @@ class ClassificationTable extends BaseDbHelper {
       '钥匙': 'key',
     };
 
-      classMap.keys.forEach((element) async {
-        await db.rawInsert(
-            "insert into ${ClassificationEntry.tableName} (${ClassificationEntry.columnName},${ClassificationEntry.columnPic}) values (?,?)", [
-          element,
-          classMap[element],
-        ]);
-      });
+    classMap.keys.forEach((element) async {
+      await db.rawInsert(
+          "insert into ${ClassificationEntry.tableName} (${ClassificationEntry.columnName},${ClassificationEntry.columnPic}) values (?,?)", [
+        element,
+        classMap[element],
+      ]);
+    });
   }
 }

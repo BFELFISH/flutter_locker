@@ -1,8 +1,8 @@
-
 import 'package:locker/beans/location.dart';
 import 'package:locker/database/base_database_helper.dart';
 import 'package:locker/database/location_entry.dart';
 import 'package:locker/database/sql_string.dart';
+import 'package:locker/utils/toast_utils.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocationTable extends BaseDbHelper {
@@ -30,7 +30,7 @@ class LocationTable extends BaseDbHelper {
     await super.getDataBase();
     await openDb();
     List<Map> result = await getAllLocation();
-    if(result.length<=0){
+    if (result.length <= 0) {
       initLocation();
     }
   }
@@ -65,36 +65,49 @@ class LocationTable extends BaseDbHelper {
 
   ///插入数据
   Future insert(Location bean) async {
-    return await db.rawInsert("insert into ${LocationEntry.tableName} (${LocationEntry.columnName},${LocationEntry.columnPic}) values (?,?)", [
-      bean.locationName,
-      bean.pic
-    ]);
+    return await db.rawInsert("insert into ${LocationEntry.tableName} (${LocationEntry.columnName},${LocationEntry.columnPic}) values (?,?)",
+        [bean.locationName, bean.pic]);
   }
 
   ///更新数据库
   Future update(Location bean) async {
-    return await db.rawUpdate(
-        "update ${LocationEntry.tableName} set ${LocationEntry.columnName} = ${bean.locationName},${LocationEntry.columnPic} = ${bean.pic}  where ${LocationEntry.columnId} = ${bean.id}");
+    var result;
+    try {
+      result = await db.rawUpdate(
+          "update ${LocationEntry.tableName} set "
+          "${LocationEntry.columnName} = ?,"
+          "${LocationEntry.columnPic} = ? "
+          " where ${LocationEntry.columnId} = ?",
+          [
+            '${bean.locationName}',
+            '${bean.pic}',
+            bean.id,
+          ]);
+    } on DatabaseException catch (error) {
+      ToastUtils.show('该位置已存在');
+    }
+    return result;
+  }
+
+  Future delete(int id) async {
+    var result = await db.rawDelete('DELETE FROM ${LocationEntry.tableName} WHERE ${LocationEntry.columnId} = ?', ['$id']);
+    return result;
   }
 
   ///预加载分类信息
   initLocation() async {
     Map locationMap = {
-      '书桌':'book_shelf',
-      '衣柜':'wardrobe',
-      '冰箱':'fridge',
+      '书桌': 'book_shelf',
+      '衣柜': 'wardrobe',
+      '冰箱': 'fridge',
     };
     try {
-      locationMap.forEach((key, value)async {
+      locationMap.forEach((key, value) async {
         await db.rawInsert(
           "insert into ${LocationEntry.tableName} (${LocationEntry.columnName},${LocationEntry.columnPic}) values (?,?)",
-          [
-            key,
-            value
-          ],
+          [key, value],
         );
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 }

@@ -32,7 +32,7 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
     if (!isLocked) {
       NavigatorUtils.toHome(context);
     } else {
-      NavigatorUtils.toHome(context);
+      NavigatorUtils.toPasswordPage(context);
     }
   }
 

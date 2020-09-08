@@ -41,4 +41,12 @@ class NavigatorUtils {
       LocationEntry.columnPic: location.pic
     });
   }
+
+  static toManageLocation(context) async {
+    return await Routes.navigateTo(context, Routes.manageLocationPage, transitionDuration: Duration(milliseconds: 500));
+  }
+
+  static toPasswordPage(context) async {
+    return await Routes.navigateTo(context, Routes.passwordPage, transitionDuration: Duration(milliseconds: 500));
+  }
 }

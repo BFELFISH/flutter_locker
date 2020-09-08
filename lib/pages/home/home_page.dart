@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locker/routes/navigator_utils.dart';
+import 'package:locker/utils/log_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/values/icon.dart';
 
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
 
   @override
   Widget build(BuildContext context) {
+    LogUtils.d(TAG, "key = ${widget.key}");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(

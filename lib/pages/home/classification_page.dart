@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locker/beans/classification.dart';
 import 'package:locker/database/good_entry.dart';
+import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
@@ -17,6 +18,8 @@ class ClassificationPage extends StatefulWidget {
 class _ClassificationPageState extends State<ClassificationPage> {
   @override
   Widget build(BuildContext context) {
+    LogUtils.d('ClassificationPage', "key = ${widget.key}");
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
@@ -44,8 +47,14 @@ class _ClassificationPageState extends State<ClassificationPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           InkBtn(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GoodListWidget(false,columns: ['已过期'],)));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GoodListWidget(
+                            false,
+                            columns: ['已过期'],
+                          )));
             },
             borderRadius: BorderRadius.only(topLeft: Radius.circular(15), bottomLeft: Radius.circular(15)),
             gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: editWidget2),
@@ -60,8 +69,14 @@ class _ClassificationPageState extends State<ClassificationPage> {
             ),
           ),
           InkBtn(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GoodListWidget(false,columns: ['即将过期'],)));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => GoodListWidget(
+                            false,
+                            columns: ['即将过期'],
+                          )));
             },
             borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
             gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pink2blue),

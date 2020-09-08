@@ -7,26 +7,31 @@ import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
 
-class AddClassOrLocationWidget extends StatefulWidget  {
+class AddClassOrLocationWidget extends StatefulWidget {
   final List iconName;
   final Function onTapCallBack;
   final TextEditingController _textEditingController;
   final String tag;
-  AddClassOrLocationWidget(this.tag,this.iconName, this.onTapCallBack,this._textEditingController);
+  String selectedImage;
+
+  int selectedIndex = 0;
+
+  AddClassOrLocationWidget(this.tag, this.iconName, this.onTapCallBack, this._textEditingController, {this.selectedImage, this.selectedIndex});
 
   @override
   _AddClassOrLocationWidgetState createState() => _AddClassOrLocationWidgetState();
 }
 
 class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
-
-  String selectedImage;
-
-
-  int selectedIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    widget.selectedImage = widget.iconName[widget.selectedIndex];
+  }
 
   @override
   Widget build(BuildContext context) {
+    print('test build selectimage ${widget.selectedIndex}');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(
@@ -35,18 +40,18 @@ class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
           },
           child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.only(top: sc.statusHeight() + 20),
-                width: sc.screenWidth(),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
-                ),
-                child: Column(children: <Widget>[
-                  _buildSelectedIcon(),
-                  _buildIconName(),
-                  _buildIconList(),
-                  _buildSummitButton(),
-                ]),
-              ))),
+            padding: EdgeInsets.only(top: sc.statusHeight() + 20),
+            width: sc.screenWidth(),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
+            ),
+            child: Column(children: <Widget>[
+              _buildSelectedIcon(),
+              _buildIconName(),
+              _buildIconList(),
+              _buildSummitButton(),
+            ]),
+          ))),
     );
   }
 
@@ -54,11 +59,11 @@ class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
     return CircleAvatar(
         backgroundColor: Colors.white,
         minRadius: 50,
-        child: selectedImage == null
+        child: widget.selectedImage == null
             ? Container()
             : Image(
-          image: AssetImage(AssertUtils.getAssertImagePath(selectedImage)),
-        ));
+                image: AssetImage(AssertUtils.getAssertImagePath(widget.selectedImage)),
+              ));
   }
 
   _buildIconName() {
@@ -118,22 +123,22 @@ class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
                   verticalOffset: 50.0,
                   child: FadeInAnimation(
                       child: GestureDetector(
-                        onTap: () {
-                          selectedIndex = index;
-                          selectedImage = widget.iconName[index];
-                          setState(() {});
-                        },
-                        child: CircleAvatar(
-                          backgroundColor: selectedIndex == index ? main_color : Colors.white,
-                          minRadius: 30,
-                          maxRadius: 30,
-                          child: Image(
-                            width: 30,
-                            height: 30,
-                            image: AssetImage(AssertUtils.getAssertImagePath(widget.iconName[index])),
-                          ),
-                        ),
-                      ))),
+                    onTap: () {
+                      widget.selectedIndex = index;
+                      widget.selectedImage = widget.iconName[index];
+                      setState(() {});
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: widget.selectedIndex == index ? main_color : Colors.white,
+                      minRadius: 30,
+                      maxRadius: 30,
+                      child: Image(
+                        width: 30,
+                        height: 30,
+                        image: AssetImage(AssertUtils.getAssertImagePath(widget.iconName[index])),
+                      ),
+                    ),
+                  ))),
             );
           },
         ),
@@ -146,7 +151,7 @@ class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
       margin: EdgeInsets.only(top: 50, bottom: 50),
       child: InkBtn(
         onTap: () async {
-         widget.onTapCallBack(selectedIndex);
+          widget.onTapCallBack(widget.selectedIndex);
         },
         borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: details1),

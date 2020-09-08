@@ -7,6 +7,10 @@ import 'package:locker/widgets/add_class_or_location_widget.dart';
 import 'package:provider/provider.dart';
 
 class AddClassPage extends StatefulWidget {
+  final Classification classification;
+
+  AddClassPage({this.classification});
+
   @override
   _AddClassPageState createState() => _AddClassPageState();
 }
@@ -48,20 +52,40 @@ class _AddClassPageState extends State<AddClassPage> {
   @override
   void initState() {
     _textEditingController = TextEditingController();
-
+    if (widget.classification != null) {
+      selectedImage = widget.classification.pic;
+      selectedIndex = iconName.indexOf(widget.classification.pic);
+      _textEditingController.text = widget.classification.name;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return AddClassOrLocationWidget('分类',iconName,onTapCallBack,_textEditingController);
+    print('test build selectimage ${selectedIndex}');
+
+    return AddClassOrLocationWidget(
+      '分类',
+      iconName,
+      onTapCallBack,
+      _textEditingController,
+      selectedImage: selectedImage,
+      selectedIndex: selectedIndex,
+    );
   }
 
-  onTapCallBack(selectedIndex)async{
+  onTapCallBack(selectedIndex) async {
     ClassListProvider provider = Provider.of<ClassListProvider>(context, listen: false);
     if (_textEditingController.text == null || _textEditingController.text.replaceAll(' ', '').length <= 0) {
       ToastUtils.show('请输入分类名称！');
     } else {
-      var result = await provider.addClass(Classification(name: _textEditingController.text, pic: iconName[selectedIndex]));
+      var result;
+      if (widget.classification == null) {
+        result = await provider.addClass(Classification(name: _textEditingController.text, pic: iconName[selectedIndex]));
+      } else {
+        widget.classification.name = _textEditingController.text;
+        widget.classification.pic = iconName[selectedIndex];
+        result = await provider.updateClass(widget.classification);
+      }
       if (result > 0) {
         Future.delayed(Duration(milliseconds: 500)).whenComplete(() async {
           ToastUtils.show('添加成功');

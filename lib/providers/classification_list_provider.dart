@@ -57,6 +57,14 @@ class ClassListProvider extends ChangeNotifier {
     }
   }
 
+  Future updateClass(Classification classification) async {
+    await _classificationTable.openDb();
+    var result = await _classificationTable.update(classification);
+    await getAllClass();
+    refresh();
+    return result;
+  }
+
   refresh() {
     notifyListeners();
   }

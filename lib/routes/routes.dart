@@ -19,6 +19,8 @@ class Routes {
   static String addLocationPage = '/add_location';
   static String addLocationDetailPage = '/add_location_detail';
   static String manageClassPage = '/manage_class';
+  static String manageLocationPage = '/manage_location';
+  static String passwordPage = '/password_page';
 
   static void configureRouters(Router mRouter) {
     router = mRouter;
@@ -36,6 +38,8 @@ class Routes {
     router.define(addLocationPage, handler: RouterHandler.addLocationHandler);
     router.define(addLocationDetailPage, handler: RouterHandler.addLocationDetailHandler);
     router.define(manageClassPage, handler: RouterHandler.manageClassHandler);
+    router.define(manageLocationPage, handler: RouterHandler.manageLocationHandler);
+    router.define(passwordPage, handler: RouterHandler.passwrodPageHandler);
   }
 
   static Future navigateTo(BuildContext context, String path,

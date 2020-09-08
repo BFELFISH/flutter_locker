@@ -4,11 +4,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:locker/beans/classification.dart';
 import 'package:locker/config/page_status.dart';
 import 'package:locker/database/classification_entry.dart';
+import 'package:locker/pages/add_classification_page.dart';
 import 'package:locker/providers/classification_list_provider.dart';
 import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/utils/assert_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
+import 'package:locker/views/custom_dialog.dart';
 import 'package:locker/widgets/empty_widget.dart';
 import 'package:locker/widgets/error_widget.dart';
 import 'package:locker/widgets/loading_widget.dart';
@@ -24,26 +26,29 @@ class _ManageClassPageState extends State<ManageClassPage> {
 
   @override
   Widget build(BuildContext context) {
-    ClassListProvider provider = Provider.of(context, listen: false);
     return Container(
       decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
-      child: FutureBuilder(
-        future: provider.getAllClass(),
-        builder: (context, snapShop) {
-          if (snapShop.connectionState == ConnectionState.done) {
-            if (provider.pageStatus == PageStatus.success) {
-              classificationList = provider.list;
-              return _buildList();
-            } else if (provider.pageStatus == PageStatus.empty) {
-              return EmptyWidget();
-            } else if (provider.pageStatus == PageStatus.error) {
-              return CustomErrorWidget();
-            } else {
-              return LoadingWidget();
-            }
-          } else {
-            return LoadingWidget();
-          }
+      child: Consumer<ClassListProvider>(
+        builder: (context, provider, child) {
+          return FutureBuilder(
+            future: provider.getAllClass(),
+            builder: (context, snapShop) {
+              if (snapShop.connectionState == ConnectionState.done) {
+                if (provider.pageStatus == PageStatus.success) {
+                  classificationList = provider.list;
+                  return _buildList();
+                } else if (provider.pageStatus == PageStatus.empty) {
+                  return EmptyWidget();
+                } else if (provider.pageStatus == PageStatus.error) {
+                  return CustomErrorWidget();
+                } else {
+                  return LoadingWidget();
+                }
+              } else {
+                return LoadingWidget();
+              }
+            },
+          );
         },
       ),
     );
@@ -90,17 +95,30 @@ class _ManageClassPageState extends State<ManageClassPage> {
           caption: '编辑',
           icon: Icons.edit,
           color: main_color,
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AddClassPage(
+                          classification: classification,
+                        )));
+          },
         ),
         IconSlideAction(
           caption: '删除',
           icon: Icons.delete,
           color: main_color,
           onTap: () async {
-            ToastUtils.show('删除');
-            await Provider.of<ClassListProvider>(context, listen: false)
-                .deleteClassById(classification.id, Provider.of<GoodListProvider>(context, listen: false));
-            setState(() {});
+            showCustomWarningDialog(context, '是否删除此分类?\n注意！该操作会删除此分类下的所有物品！', () async {
+              Provider.of<ClassListProvider>(context, listen: false)
+                  .deleteClassById(classification.id, Provider.of<GoodListProvider>(context, listen: false))
+                  .whenComplete(() {
+                ToastUtils.show('删除成功');
+                Future.delayed(Duration(milliseconds: 500)).whenComplete(() {
+                  setState(() {});
+                });
+              });
+            });
           },
         )
       ],

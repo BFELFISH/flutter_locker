@@ -221,7 +221,8 @@ class _AddGoodPageState extends State<AddGoodPage> {
       if (succeed) {
         goodPhoto = null;
         Future.delayed(Duration(seconds: 1)).then((value) {
-          if (widget.good.id != null) {
+          if (widget.good?.id != null) {
+            Navigator.of(context).pop();
             Navigator.of(context).pop();
           }
           Navigator.of(context).pop();

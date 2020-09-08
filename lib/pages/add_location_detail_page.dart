@@ -13,17 +13,27 @@ import 'package:provider/provider.dart';
 
 class AddLocationDetailPage extends StatefulWidget {
   final Location location;
+  final LocationDetail locationDetail;
 
-  AddLocationDetailPage(this.location);
+  AddLocationDetailPage(this.location, {this.locationDetail});
 
   @override
   _AddLocationDetailPageState createState() => _AddLocationDetailPageState();
 }
 
 class _AddLocationDetailPageState extends State<AddLocationDetailPage> {
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _textEditingController;
 
   TextStyle style = TextStyle(color: black_2d4059, fontSize: 18);
+
+  @override
+  void initState() {
+    super.initState();
+    _textEditingController = TextEditingController();
+    if (widget.locationDetail != null) {
+      _textEditingController.text = widget.locationDetail.locationDetail;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +130,13 @@ class _AddLocationDetailPageState extends State<AddLocationDetailPage> {
       ToastUtils.show('请输入位置详细信息');
     } else {
       LocationDetailProvider provider = Provider.of<LocationDetailProvider>(context, listen: false);
-      var result = await provider.addLocationDetail(LocationDetail(locationDetail: _textEditingController.text, location: widget.location));
+      var result;
+      if (widget.locationDetail != null) {
+        widget.locationDetail.locationDetail = _textEditingController.text;
+        result = await provider.updateLocationDetail(widget.locationDetail);
+      } else {
+        result = await provider.addLocationDetail(LocationDetail(locationDetail: _textEditingController.text, location: widget.location));
+      }
       if (result == null || result < 0) {
         ToastUtils.show('添加失败');
       } else {

@@ -6,6 +6,7 @@ import 'package:locker/utils/assert_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
+import 'package:locker/views/custom_dialog.dart';
 import 'package:locker/views/ink_btn.dart';
 import 'package:provider/provider.dart';
 
@@ -140,34 +141,13 @@ class GoodDetailPage extends StatelessWidget {
           ),
           InkBtn(
             onTap: () async {
-              showDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('提示'),
-                      content: Text('是否删除此物品?'),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('取消'),
-                        ),
-                        FlatButton(
-                          onPressed: () async {
-                            var result = await Provider.of<GoodListProvider>(context, listen: false).deleteGoodById(good.id);
-                            Future.delayed(Duration(milliseconds: 500)).whenComplete(() {
-                              ToastUtils.show('删除成功');
-                              Navigator.of(context).pop();
-                              Navigator.of(context).pop();
-                            });
-                          },
-                          child: Text('确定'),
-                        ),
-                      ],
-                    );
-                  });
+              showCustomWarningDialog(context, '是否删除此物品?', () async {
+                var result = await Provider.of<GoodListProvider>(context, listen: false).deleteGoodById(good.id);
+                Future.delayed(Duration(milliseconds: 500)).whenComplete(() {
+                  ToastUtils.show('删除成功');
+                  Navigator.of(context).pop();
+                });
+              });
             },
             gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: details1),
             borderRadius: BorderRadius.circular(15),
