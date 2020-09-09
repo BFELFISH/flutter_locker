@@ -9,8 +9,46 @@ class GoodListProvider extends ChangeNotifier {
   PageStatus _pageStatus = PageStatus.loading;
 
   GoodTable _goodTable = GoodTable.getInstance();
-  List<Map> goodList = [];
+  List<Map> _goodList = [];
   Map<String, List> requestMap = {};
+
+  ///排序指标
+  SortType _sortType = SortType.remainDays;
+
+  ///0 递增，1递减
+  int _sort = 0;
+
+  set sortType(SortType value) {
+    _sortType = value;
+    notifyListeners();
+  }
+
+  set sort(int value) {
+    _sort = value;
+    notifyListeners();
+  }
+
+  SortType get sortType => _sortType;
+
+  List<Map> get goodList {
+    if (_sortType != null) {
+      switch (_sortType) {
+        case SortType.remainDays:
+          _goodList = Good.sortByDate(GoodEntry.columnExpDate, _sort, _goodList);
+          break;
+        case SortType.buyDate:
+          _goodList = Good.sortByDate(GoodEntry.columnBuyDate, _sort, _goodList);
+          break;
+        case SortType.num:
+          _goodList = Good.sortByNumOrPrice(GoodEntry.columnNum, _sort, _goodList);
+          break;
+        case SortType.price:
+          _goodList = Good.sortByNumOrPrice(GoodEntry.columnPrice, _sort, _goodList);
+          break;
+      }
+    }
+    return _goodList;
+  }
 
   Future getGoodList() async {
     if (requestMap.length == 0) {
@@ -34,7 +72,7 @@ class GoodListProvider extends ChangeNotifier {
     _pageStatus = PageStatus.loading;
     List<Map> result = await _goodTable.getAllGood();
     _pageStatus = getResultStatus(result);
-    goodList = result;
+    _goodList = result;
   }
 
   ///根据参数获取物品列表
@@ -45,15 +83,15 @@ class GoodListProvider extends ChangeNotifier {
     List<Map> result;
     if (columns.length == 1 && columns.contains(GoodEntry.columnName)) {
       result = await _goodTable.getGoodByName(keys[0]);
-    }else if(columns.length == 1&& columns.contains('即将过期')){
+    } else if (columns.length == 1 && columns.contains('即将过期')) {
       result = await getAlmostExpGood();
-    } else if(columns.length == 1&& columns.contains('已过期')){
+    } else if (columns.length == 1 && columns.contains('已过期')) {
       result = await getExpGood();
-    }else {
+    } else {
       result = await _goodTable.getGoodByColumns(columns, keys);
     }
     _pageStatus = getResultStatus(result);
-    goodList = result;
+    _goodList = result;
   }
 
   ///根据单个参数获取
@@ -62,7 +100,7 @@ class GoodListProvider extends ChangeNotifier {
     _pageStatus = PageStatus.loading;
     List<Map> result = await _goodTable.getGoodByOneColumn(columnName, value);
     _pageStatus = getResultStatus(result);
-    goodList = result;
+    _goodList = result;
   }
 
   Future deleteGoodById(int id) async {
@@ -108,4 +146,13 @@ class GoodListProvider extends ChangeNotifier {
   }
 
   PageStatus get pageStatus => _pageStatus;
+
+  int get sort => _sort;
+}
+
+enum SortType {
+  remainDays,
+  num,
+  price,
+  buyDate,
 }

@@ -61,6 +61,10 @@ dependencies:
     sdk: flutter
   #下拉刷新
   pull_to_refresh: ^1.6.1
+  #图片压缩
+  flutter_native_image: ^0.0.5
+
+
 
 
 dev_dependencies:
@@ -152,6 +156,8 @@ flutter:
     - images/classification_setting.png
     - images/location_setting.png
     - images/expanded.png
+    - images/up.png
+    - images/down.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

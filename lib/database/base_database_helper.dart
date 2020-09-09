@@ -13,13 +13,13 @@ abstract class BaseDbHelper {
 
   getTableName();
 
-
   openDb() async {
+    if (!isTableExits) await getDataBase();
     if (db == null) db = await SqlManager.getCurrentDatabase();
     if (!db.isOpen) db = await open();
   }
 
-  closeDb(){
+  closeDb() {
     db?.close();
   }
 
@@ -34,11 +34,11 @@ abstract class BaseDbHelper {
   @mustCallSuper
   prepare(name, String createSql) async {
     isTableExits = await SqlManager.isTableExits(name);
+    print('test build table$name');
     if (!isTableExits) {
       Database db = await SqlManager.getCurrentDatabase();
       return await db.execute(createSql);
     }
-
   }
 
   @mustCallSuper

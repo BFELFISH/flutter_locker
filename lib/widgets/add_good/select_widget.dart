@@ -65,8 +65,8 @@ class SelectWidgetState extends State<SelectWidget> {
               lastDate: DateTime(DateTime.now().year + 500));
           if (result != null) {
             result = result.toString().substring(0, 11);
-            provider.editValue[widget.tag] = selected;
             selected = result;
+            provider.editValue[widget.tag] = selected;
           }
         }
         if (result != null) {

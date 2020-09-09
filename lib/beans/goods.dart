@@ -134,4 +134,68 @@ class Good {
     }
     return true;
   }
+
+  //type:0递增，1递减
+  //sortType: num or price
+  static List<Map> sortByNumOrPrice(String sortType, int type, List<Map> goods) {
+    List<Map> result = List.from(goods);
+
+    if (type == 0) {
+      for (int i = 0; i < result.length - 1; i++) {
+        for (int j = 0; j < result.length - 1 - i; j++) {
+          if (result[j][sortType] == null) {
+            continue;
+          } else {
+            if (result[j + 1][sortType] == null || result[j][sortType] > result[j + 1][sortType]) {
+              var temp = result[j];
+              result[j] = result[j + 1];
+              result[j + 1] = temp;
+            }
+          }
+        }
+      }
+    } else {
+      for (int i = 0; i < result.length - 1; i++) {
+        for (int j = 0; j < result.length - 1 - i; j++) {
+          if (result[j + 1][sortType] == null) {
+            continue;
+          } else {
+            if (result[j][sortType] == null || result[j][sortType] < result[j + 1][sortType]) {
+              var temp = result[j];
+              result[j] = result[j + 1];
+              result[j + 1] = temp;
+            }
+          }
+        }
+      }
+    }
+    return result;
+  }
+
+  //type:0递增，1递减,只用于
+  static List<Map> sortByDate(String sortType, int type, List<Map> goods) {
+    List<Map> result = List.from(goods);
+    if (type == 0) {
+      for (int i = 0; i < result.length - 1; i++) {
+        for (int j = 0; j < result.length - 1 - i; j++) {
+          if (DateTime.parse(result[j][sortType] + '00:00:00').difference(DateTime.parse(result[j + 1][sortType] + '00:00:00')).inDays > 0) {
+            var temp = result[j];
+            result[j] = result[j + 1];
+            result[j + 1] = temp;
+          }
+        }
+      }
+    } else {
+      for (int i = 0; i < result.length - 1; i++) {
+        for (int j = 0; j < result.length - 1 - i; j++) {
+          if (DateTime.parse(result[j][sortType] + '00:00:00').difference(DateTime.parse(result[j + 1][sortType] + '00:00:00')).inDays <= 0) {
+            var temp = result[j];
+            result[j] = result[j + 1];
+            result[j + 1] = temp;
+          }
+        }
+      }
+    }
+    return result;
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:locker/beans/classification.dart';
 import 'package:locker/beans/goods.dart';
 import 'package:locker/beans/location_detial.dart';
@@ -47,7 +48,6 @@ class AddGoodProvider extends ChangeNotifier {
 
       callback(true, '添加成功');
     } else {
-      print('test build $result $goodId');
       callback(false, '添加失败了');
     }
   }
@@ -60,8 +60,13 @@ class AddGoodProvider extends ChangeNotifier {
     good.name = editValue[Good.columnToLabel[GoodEntry.columnName]];
     good.buyDate = editValue[Good.columnToLabel[GoodEntry.columnBuyDate]];
     good.expDate = editValue[Good.columnToLabel[GoodEntry.columnExpDate]];
+
+    print('test build add good exp ${good.expDate}');
+    print('test build Good.columnToLabel[GoodEntry.columnExpDate]${Good.columnToLabel[GoodEntry.columnExpDate]}');
+    print('test build Good.columnToLabel[GoodEntry.columnExpDate]${editValue[Good.columnToLabel[GoodEntry.columnExpDate]]}');
     good.prdDate = editValue[Good.columnToLabel[GoodEntry.columnPrdDate]];
     if (goodPic != null) {
+      goodPic = await FlutterNativeImage.compressImage(goodPic.path, quality: 50, percentage: 50);
       good.pic = await goodPic.readAsBytes();
     } else if (goodPicByte != null) {
       good.pic = goodPicByte;

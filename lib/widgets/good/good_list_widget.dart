@@ -8,6 +8,7 @@ import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/widgets/empty_widget.dart';
 import 'package:locker/widgets/error_widget.dart';
+import 'package:locker/widgets/good/good_list_sort.dart';
 import 'package:locker/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -40,33 +41,40 @@ class _GoodListWidgetState extends State<GoodListWidget> {
     return Container(
       padding: EdgeInsets.only(top: sc.statusHeight()),
       decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
-      child: Consumer<GoodListProvider>(
-        builder: (context, provider, child) {
-          if (provider.pageStatus == PageStatus.success && goodList != null) {
-            goodList = provider.goodList;
-            return _buildGoodList();
-          } else {
-            return FutureBuilder(
-              future: widget.isAll ? provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
-              builder: (context, snapShop) {
-                if (snapShop.connectionState == ConnectionState.done) {
-                  if (provider.pageStatus == PageStatus.success) {
-                    goodList = provider.goodList;
-                    return _buildGoodList();
-                  } else if (provider.pageStatus == PageStatus.empty) {
-                    return EmptyWidget();
-                  } else if (PageStatus.error == provider.pageStatus) {
-                    return CustomErrorWidget();
-                  } else {
-                    return LoadingWidget();
-                  }
+      child: Column(
+        children: <Widget>[
+          GoodListSort(),
+          Expanded(
+            child: Consumer<GoodListProvider>(
+              builder: (context, provider, child) {
+                if (provider.pageStatus == PageStatus.success && goodList != null) {
+                  goodList = provider.goodList;
+                  return _buildGoodList();
                 } else {
-                  return LoadingWidget();
+                  return FutureBuilder(
+                    future: widget.isAll ? provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
+                    builder: (context, snapShop) {
+                      if (snapShop.connectionState == ConnectionState.done) {
+                        if (provider.pageStatus == PageStatus.success) {
+                          goodList = provider.goodList;
+                          return _buildGoodList();
+                        } else if (provider.pageStatus == PageStatus.empty) {
+                          return EmptyWidget();
+                        } else if (PageStatus.error == provider.pageStatus) {
+                          return CustomErrorWidget();
+                        } else {
+                          return LoadingWidget();
+                        }
+                      } else {
+                        return LoadingWidget();
+                      }
+                    },
+                  );
                 }
               },
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }

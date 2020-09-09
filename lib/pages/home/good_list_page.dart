@@ -24,48 +24,43 @@ class _GoodListPageState extends State<GoodListPage> {
   Widget build(BuildContext context) {
     LogUtils.d('GoodListPage', "key = ${widget.key}");
 
-    return InnerDrawer(
-      key: _innerDrawerKey,
-      swipe: false,
-      rightChild: DrawerLeftWidget(_innerDrawerKey),
-      scaffold: Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
-            ),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10, top: sc.statusHeight() + 10),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(child: Container(child: Search())),
-                      InkBtn(
-                        onTap: () {
-                          _innerDrawerKey.currentState.open();
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.only(right: 20, left: 10),
-                          child: Image(
-                            width: 25,
-                            color: main_color,
-                            image: AssetImage(AssertUtils.getAssertImagePath('menu')),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
+          ),
+          child: Column(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(left: 10, right: 10, top: sc.statusHeight() + 10),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(child: Container(child: Search())),
+//                    InkBtn(
+//                      onTap: () {
+//                        _innerDrawerKey.currentState.open();
+//                      },
+//                      child: Container(
+//                        alignment: Alignment.center,
+//                        padding: const EdgeInsets.only(right: 20, left: 10),
+//                        child: Image(
+//                          width: 25,
+//                          color: main_color,
+//                          image: AssetImage(AssertUtils.getAssertImagePath('menu')),
+//                        ),
+//                      ),
+//                    ),
+                  ],
                 ),
-                Expanded(child: GoodListWidget(true))
-              ],
-            ),
+              ),
+              Expanded(child: GoodListWidget(true))
+            ],
           ),
         ),
       ),

@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Routes.configureRouters(Router());
     SqlManager.init();
-    SqlManager.createTable();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: ClassListProvider()),
