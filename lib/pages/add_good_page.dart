@@ -60,11 +60,13 @@ class _AddGoodPageState extends State<AddGoodPage> {
         goodPhotoImage = Image.memory(widget.good?.pic);
       }
       if (widget.good.locationDetail != null) {
+        provider.editValue[Good.columnToLabel[GoodEntry.columnLocation] + 'id'] = widget.good.locationDetail.id;
         provider.editValue[Good.columnToLabel[GoodEntry.columnLocation]] =
             widget.good.locationDetail.location.locationName + widget.good?.locationDetail.locationDetail;
       }
       provider.editValue[Good.columnToLabel[GoodEntry.columnRemarks]] = widget.good.remarks;
       provider.editValue[Good.columnToLabel[GoodEntry.columnWarnDays]] = widget.good.warnDays?.toString();
+      provider.editValue[Good.columnToLabel[GoodEntry.columnClassification] + 'id'] = widget.good.classification?.id;
       provider.editValue[Good.columnToLabel[GoodEntry.columnClassification]] = widget.good.classification?.name;
     }
   }
@@ -222,7 +224,6 @@ class _AddGoodPageState extends State<AddGoodPage> {
         goodPhoto = null;
         Future.delayed(Duration(seconds: 1)).then((value) {
           if (widget.good?.id != null) {
-            Navigator.of(context).pop();
             Navigator.of(context).pop();
           }
           Navigator.of(context).pop();

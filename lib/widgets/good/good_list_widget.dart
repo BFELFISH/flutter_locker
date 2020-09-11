@@ -45,34 +45,26 @@ class _GoodListWidgetState extends State<GoodListWidget> {
         children: <Widget>[
           GoodListSort(),
           Expanded(
-            child: Consumer<GoodListProvider>(
-              builder: (context, provider, child) {
-                if (provider.pageStatus == PageStatus.success && goodList != null) {
-                  goodList = provider.goodList;
-                  return _buildGoodList();
-                } else {
-                  return FutureBuilder(
-                    future: widget.isAll ? provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
-                    builder: (context, snapShop) {
-                      if (snapShop.connectionState == ConnectionState.done) {
-                        if (provider.pageStatus == PageStatus.success) {
-                          goodList = provider.goodList;
-                          return _buildGoodList();
-                        } else if (provider.pageStatus == PageStatus.empty) {
-                          return EmptyWidget();
-                        } else if (PageStatus.error == provider.pageStatus) {
-                          return CustomErrorWidget();
-                        } else {
-                          return LoadingWidget();
-                        }
+            child: Consumer<GoodListProvider>(builder: (context, provider, child) {
+              return FutureBuilder(
+                  future: widget.isAll ? provider.getAllGoodList() : provider.getGoodByParams(widget.columns, widget.values),
+                  builder: (context, snapShop) {
+                    if (snapShop.connectionState == ConnectionState.done) {
+                      if (provider.pageStatus == PageStatus.success) {
+                        goodList = provider.goodList;
+                        return _buildGoodList();
+                      } else if (provider.pageStatus == PageStatus.empty) {
+                        return EmptyWidget();
+                      } else if (PageStatus.error == provider.pageStatus) {
+                        return CustomErrorWidget();
                       } else {
                         return LoadingWidget();
                       }
-                    },
-                  );
-                }
-              },
-            ),
+                    } else {
+                      return LoadingWidget();
+                    }
+                  });
+            }),
           ),
         ],
       ),

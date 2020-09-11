@@ -208,33 +208,29 @@ class GoodListItem extends StatelessWidget {
     int remainDays = DateTime.parse(good.expDate + '00:00:00').difference(DateTime.now()).inDays;
     return Padding(
       padding: const EdgeInsets.only(top: 8),
-      child: Row(
-        children: <Widget>[
-          Text(
-            remainDays < 0 ? '已过期：' : '剩余有效时间：',
-            style: remainDays >= 0 ? messageStyle : TextStyle(color: Colors.red),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            '${remainDays.abs()} 天',
-            style: messageStyle,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+      child: Container(
+        width: (sc.screenWidth() - sc.w(50)) / 2,
+        child: Text(
+          remainDays < 0 ? '已过期：' : '剩余有效时间：' + '${remainDays.abs()} 天',
+          style: remainDays >= 0 ? messageStyle : TextStyle(color: Colors.red),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }
 
   _buildText(String message) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: Text(
-        '$message',
-        style: messageStyle,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+    return Container(
+      width: (sc.screenWidth() - sc.w(50)) / 2,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: Text(
+          '$message',
+          style: messageStyle,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
       ),
     );
   }

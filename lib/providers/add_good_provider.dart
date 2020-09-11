@@ -38,8 +38,7 @@ class AddGoodProvider extends ChangeNotifier {
       result = await _goodTable.insert(good);
     }
     if (result > 0) {
-      await Provider.of<GoodListProvider>(context, listen: false).getAllGoodList();
-      Provider.of<GoodListProvider>(context, listen: false).refresh();
+      await Provider.of<GoodListProvider>(context, listen: false).refresh();
       goodPic = null;
       editValue = {};
       if (goodId != null) {
@@ -76,12 +75,12 @@ class AddGoodProvider extends ChangeNotifier {
     }
     if (editValue[Good.columnToLabel[GoodEntry.columnLocation]] != null &&
         editValue[Good.columnToLabel[GoodEntry.columnLocation]].toString().isNotEmpty) {
-      good.locationId = int.parse(editValue[Good.columnToLabel[GoodEntry.columnLocation]].toString());
+      good.locationId = int.parse(editValue[Good.columnToLabel[GoodEntry.columnLocation] + 'id'].toString());
       good.locationDetail = LocationDetail(id: good.locationId);
     }
     if (editValue[Good.columnToLabel[GoodEntry.columnClassification]] != null &&
         editValue[Good.columnToLabel[GoodEntry.columnClassification]].toString().isNotEmpty) {
-      good.classification = Classification(id: int.parse(editValue[Good.columnToLabel[GoodEntry.columnClassification]].toString()));
+      good.classification = Classification(id: int.parse(editValue[Good.columnToLabel[GoodEntry.columnClassification] + 'id'].toString()));
     }
     good.remarks = editValue[Good.columnToLabel[GoodEntry.columnRemarks]];
     good.warnDays = int.parse(editValue[Good.columnToLabel[GoodEntry.columnWarnDays]].toString()) ?? await SpUtils.getInt(WARN_DAY_KEY) ?? 15;

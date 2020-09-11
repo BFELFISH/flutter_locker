@@ -87,32 +87,32 @@ class GoodTable extends BaseDbHelper {
   Future update(Good bean) async {
     var result = await db.rawUpdate(
         "update ${GoodEntry.tableName} set "
-            "${GoodEntry.columnName} = ?,"
-            "${GoodEntry.columnBuyDate} = ?,"
-            "${GoodEntry.columnPrdDate} = ?,"
-            "${GoodEntry.columnExpDate} = ?,"
-            "${GoodEntry.columnNum} = ?,"
-            "${GoodEntry.columnPrice} = ?,"
-            "${GoodEntry.columnPic} = ?,"
-            "${GoodEntry.columnLocation} = ?,"
-            "${GoodEntry.columnRemarks} = ?,"
-            "${GoodEntry.columnWarnDays} = ?,"
-            "${GoodEntry.columnClassification} = ?"
-            "where ${
-            GoodEntry.columnId} = ?",[
-              '${bean.name}',
-              '${bean.buyDate}',
-              '${bean.prdDate}',
-              '${bean.expDate}',
-              bean.numOfGood,
-      bean.price,
-      bean.pic,
-      bean.locationDetail?.id,
-      '${bean.remarks}',
-      bean.warnDays,
-      bean.classification?.id,
-      bean.id
-    ]);
+        "${GoodEntry.columnName} = ?,"
+        "${GoodEntry.columnBuyDate} = ?,"
+        "${GoodEntry.columnPrdDate} = ?,"
+        "${GoodEntry.columnExpDate} = ?,"
+        "${GoodEntry.columnNum} = ?,"
+        "${GoodEntry.columnPrice} = ?,"
+        "${GoodEntry.columnPic} = ?,"
+        "${GoodEntry.columnLocation} = ?,"
+        "${GoodEntry.columnRemarks} = ?,"
+        "${GoodEntry.columnWarnDays} = ?,"
+        "${GoodEntry.columnClassification} = ?"
+        "where ${GoodEntry.columnId} = ?",
+        [
+          bean.name,
+          bean.buyDate,
+          bean.prdDate,
+          bean.expDate,
+          bean.numOfGood,
+          bean.price,
+          bean.pic,
+          bean.locationDetail?.id,
+          bean.remarks,
+          bean.warnDays,
+          bean.classification?.id,
+          bean.id
+        ]);
     return result;
   }
 

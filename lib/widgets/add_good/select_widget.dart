@@ -47,13 +47,13 @@ class SelectWidgetState extends State<SelectWidget> {
         if (widget.tag == '分类') {
           result = await NavigatorUtils.toSelectClass(context);
           if (result is Classification) {
-            provider.editValue[widget.tag] = result.id;
+            provider.editValue[widget.tag + 'id'] = result.id;
             selected = result.name;
           }
         } else if (widget.tag == '位置') {
           result = await NavigatorUtils.toSelectLocation(context);
           if (result is LocationDetail) {
-            provider.editValue[widget.tag] = result.id;
+            provider.editValue[widget.tag + 'id'] = result.id;
             selected = result.location?.locationName;
             selected += result.locationDetail;
           }
