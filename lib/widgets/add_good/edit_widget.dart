@@ -13,8 +13,9 @@ class EditWidget extends StatefulWidget {
   final String editLable;
   final InputType inputType;
   Function(String input) onValidDayInputComplete;
+  final int textMaxLength;
 
-  EditWidget(this.editLable, this.inputType, {this.onValidDayInputComplete});
+  EditWidget(this.editLable, this.inputType, {this.onValidDayInputComplete,this.textMaxLength = 20});
 
   @override
   EditWidgetState createState() => EditWidgetState();
@@ -63,7 +64,7 @@ class EditWidgetState extends State<EditWidget> {
           Expanded(
             child: TextField(
               maxLines: 1,
-              inputFormatters: [LengthLimitingTextInputFormatter(20)],
+              inputFormatters: [LengthLimitingTextInputFormatter(widget.textMaxLength)],
               keyboardType: widget.inputType == InputType.text ? TextInputType.text : TextInputType.number,
               autofocus: false,
               controller: textEditingController,

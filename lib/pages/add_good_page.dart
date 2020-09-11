@@ -145,28 +145,7 @@ class _AddGoodPageState extends State<AddGoodPage> {
           shrinkWrap: true,
           itemCount: inputContent.length,
           itemBuilder: (context, index) {
-            Widget child;
-            InputType currentType = inputContent.values.toList()[index];
-            String tag = inputContent.keys.toList()[index];
-            if (currentType == InputType.text || InputType.double == currentType || InputType.int == currentType)
-              child = EditWidget(
-                tag,
-                currentType,
-                onValidDayInputComplete: _onValidDayInputComplete,
-              );
-            else if (tag == Good.columnToLabel['${GoodEntry.columnExpDate}']) {
-              child = SelectWidget(
-                tag,
-                key: expDateKey,
-              );
-            } else if (tag == Good.columnToLabel['${GoodEntry.columnPrdDate}']) {
-              child = SelectWidget(
-                tag,
-                key: prdDateKey,
-              );
-            } else {
-              child = SelectWidget(tag);
-            }
+            Widget child = _buildInputItem(index);
             return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -184,6 +163,42 @@ class _AddGoodPageState extends State<AddGoodPage> {
             );
           },
         ));
+  }
+
+  Widget _buildInputItem(int index) {
+    Widget child;
+    InputType currentType = inputContent.values.toList()[index];
+    String tag = inputContent.keys.toList()[index];
+    if (currentType == InputType.text || InputType.double == currentType || InputType.int == currentType) {
+      if (tag == '有效天数') {
+        child = EditWidget(
+          tag,
+          currentType,
+          onValidDayInputComplete: _onValidDayInputComplete,
+          textMaxLength: 4,
+        );
+      } else {
+        child = EditWidget(
+          tag,
+          currentType,
+          textMaxLength: tag == Good.columnToLabel[GoodEntry.columnRemarks] ? 20 : 7,
+        );
+      }
+    } else if (tag == Good.columnToLabel['${GoodEntry.columnExpDate}']) {
+      child = SelectWidget(
+        tag,
+        key: expDateKey,
+      );
+    } else if (tag == Good.columnToLabel['${GoodEntry.columnPrdDate}']) {
+      child = SelectWidget(
+        tag,
+        key: prdDateKey,
+      );
+    } else {
+      child = SelectWidget(tag);
+    }
+
+    return child;
   }
 
   _buildSummitButton() {
