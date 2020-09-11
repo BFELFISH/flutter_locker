@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locker/beans/classification.dart';
-
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/classification/classification_list_widget.dart';
+import 'package:locker/widgets/classification/classification_list_widget.dart';
 
 class SelectClassPage extends StatelessWidget {
   SelectClassPage();

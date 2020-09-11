@@ -61,8 +61,6 @@ class _AddClassPageState extends State<AddClassPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('test build selectimage ${selectedIndex}');
-
     return AddClassOrLocationWidget(
       '分类',
       iconName,

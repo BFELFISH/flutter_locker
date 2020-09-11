@@ -23,8 +23,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    LogUtils.d('SettingsPage', "key = ${widget.key}");
-
     GoodListProvider goodListProvider = Provider.of<GoodListProvider>(context, listen: false);
     return Container(
       decoration: BoxDecoration(
@@ -151,7 +149,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   getSwitchValue() async {
     switchValue = await SpUtils.getBool(LOCKED_KEY) ?? false;
-    print('test build swiva $switchValue');
     setState(() {});
   }
 

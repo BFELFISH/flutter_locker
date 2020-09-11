@@ -18,8 +18,6 @@ class ClassificationPage extends StatefulWidget {
 class _ClassificationPageState extends State<ClassificationPage> {
   @override
   Widget build(BuildContext context) {
-    LogUtils.d('ClassificationPage', "key = ${widget.key}");
-
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),

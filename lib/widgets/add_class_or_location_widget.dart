@@ -31,7 +31,6 @@ class _AddClassOrLocationWidgetState extends State<AddClassOrLocationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print('test build selectimage ${widget.selectedIndex}');
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: GestureDetector(

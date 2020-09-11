@@ -20,7 +20,9 @@ abstract class BaseDbHelper {
   }
 
   closeDb() {
-    db?.close();
+    if (db.isOpen) {
+      db?.close();
+    }
   }
 
   createTableBaseString(String sql) {
@@ -34,7 +36,6 @@ abstract class BaseDbHelper {
   @mustCallSuper
   prepare(name, String createSql) async {
     isTableExits = await SqlManager.isTableExits(name);
-    print('test build table$name');
     if (!isTableExits) {
       Database db = await SqlManager.getCurrentDatabase();
       return await db.execute(createSql);

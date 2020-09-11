@@ -61,9 +61,6 @@ class AddGoodProvider extends ChangeNotifier {
     good.buyDate = editValue[Good.columnToLabel[GoodEntry.columnBuyDate]];
     good.expDate = editValue[Good.columnToLabel[GoodEntry.columnExpDate]];
 
-    print('test build add good exp ${good.expDate}');
-    print('test build Good.columnToLabel[GoodEntry.columnExpDate]${Good.columnToLabel[GoodEntry.columnExpDate]}');
-    print('test build Good.columnToLabel[GoodEntry.columnExpDate]${editValue[Good.columnToLabel[GoodEntry.columnExpDate]]}');
     good.prdDate = editValue[Good.columnToLabel[GoodEntry.columnPrdDate]];
     if (goodPic != null) {
       goodPic = await FlutterNativeImage.compressImage(goodPic.path, quality: 50, percentage: 50);

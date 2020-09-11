@@ -18,8 +18,6 @@ class _LocationPageState extends State<LocationPage> {
 
   @override
   Widget build(BuildContext context) {
-    LogUtils.d('LocationPage', "key = ${widget.key}");
-
     this.context = context;
     return Builder(builder: (context) {
       return Container(

@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:locker/pages/home/classification_page.dart';
+import 'package:locker/pages/home/good_list_page.dart';
+import 'package:locker/pages/home/location_page.dart';
+import 'package:locker/pages/home/settings_page.dart';
 import 'package:locker/routes/navigator_utils.dart';
 import 'package:locker/utils/log_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/values/icon.dart';
-
-import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/good_list_page.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/location_page.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/settings_page.dart';
-
-import 'classification_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -40,7 +38,6 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
 
   @override
   Widget build(BuildContext context) {
-    LogUtils.d(TAG, "key = ${widget.key}");
     return Scaffold(
         resizeToAvoidBottomInset: false,
         floatingActionButton: FloatingActionButton(

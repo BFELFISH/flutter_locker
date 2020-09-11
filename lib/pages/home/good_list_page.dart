@@ -22,8 +22,6 @@ class _GoodListPageState extends State<GoodListPage> {
 
   @override
   Widget build(BuildContext context) {
-    LogUtils.d('GoodListPage', "key = ${widget.key}");
-
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: GestureDetector(
