@@ -113,7 +113,7 @@ class _AddGoodPageState extends State<AddGoodPage> {
               });
           setState(() {
             goodPhoto = result ?? goodPhoto;
-            goodPhotoImage = Image.file(goodPhoto);
+            goodPhotoImage = result == null ? Image.file(goodPhoto) : null;
             provider.goodPic = goodPhoto;
           });
         },
