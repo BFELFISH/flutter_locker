@@ -107,6 +107,7 @@ class _AddGoodPageState extends State<AddGoodPage> {
           var result = await showModalBottomSheet(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
               context: context,
+              isDismissible: false,
               builder: (context) {
                 return AddPhotoDialog();
               });

@@ -8,7 +8,7 @@ import 'package:locker/utils/log_utils.dart';
  */
 class Routes {
   static const String TAG = 'Routes';
-  static Router router;
+  static FluroRouter router;
   static String root = '/';
   static String home = '/home';
   static String addGood = '/add_good';
@@ -22,7 +22,7 @@ class Routes {
   static String manageLocationPage = '/manage_location';
   static String passwordPage = '/password_page';
 
-  static void configureRouters(Router mRouter) {
+  static void configureRouters(FluroRouter mRouter) {
     router = mRouter;
     router.notFoundHandler = Handler(handlerFunc: (context, Map<String, List<String>> params) {
       LogUtils.d(TAG, 'Route Not Found');

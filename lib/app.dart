@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Routes.configureRouters(Router());
+    Routes.configureRouters(FluroRouter());
     SqlManager.init();
     return MultiProvider(
       providers: [
