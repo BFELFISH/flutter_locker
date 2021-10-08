@@ -28,6 +28,7 @@ class AddPhotoDialog extends StatelessWidget {
   double buttonHeight = 60;
   final picker = ImagePicker();
 
+  ///拍照按钮
   _takePhoto(context) {
     return InkBtn(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
@@ -47,6 +48,7 @@ class AddPhotoDialog extends StatelessWidget {
     );
   }
 
+  ///从图库选择
   _selectPhoto(context) {
     return InkBtn(
       onTap: () async {
@@ -68,6 +70,7 @@ class AddPhotoDialog extends StatelessWidget {
     );
   }
 
+  ///取消
   _cancel(context) {
     return InkBtn(
       onTap: () {

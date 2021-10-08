@@ -6,6 +6,7 @@ import 'package:locker/beans/goods.dart';
 import 'package:locker/database/good_entry.dart';
 import 'package:locker/providers/add_good_provider.dart';
 import 'package:locker/utils/assert_utils.dart';
+import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/utils/toast_utils.dart';
 import 'package:locker/values/colors.dart';
@@ -54,20 +55,26 @@ class _AddGoodPageState extends State<AddGoodPage> {
       provider.editValue[Good.columnToLabel[GoodEntry.columnExpDate]] = widget.good.expDate;
       provider.editValue[Good.columnToLabel[GoodEntry.columnPrdDate]] = widget.good.prdDate;
       provider.editValue[Good.columnToLabel[GoodEntry.columnPrice]] = widget.good.price?.toString();
-      provider.editValue[Good.columnToLabel[GoodEntry.columnNum]] = widget.good.numOfGood?.toString();
+      provider.editValue[Good.columnToLabel[GoodEntry.columnNum]] =
+          widget.good.numOfGood?.toString();
       provider.goodPicByte = widget.good?.pic;
       if (widget.good.pic != null) {
         goodPhotoImage = Image.memory(widget.good?.pic);
       }
       if (widget.good.locationDetail != null) {
-        provider.editValue[Good.columnToLabel[GoodEntry.columnLocation] + 'id'] = widget.good.locationDetail.id;
+        provider.editValue[Good.columnToLabel[GoodEntry.columnLocation] + 'id'] =
+            widget.good.locationDetail.id;
         provider.editValue[Good.columnToLabel[GoodEntry.columnLocation]] =
-            widget.good.locationDetail.location.locationName + widget.good?.locationDetail.locationDetail;
+            widget.good.locationDetail.location.locationName +
+                widget.good?.locationDetail.locationDetail;
       }
       provider.editValue[Good.columnToLabel[GoodEntry.columnRemarks]] = widget.good.remarks;
-      provider.editValue[Good.columnToLabel[GoodEntry.columnWarnDays]] = widget.good.warnDays?.toString();
-      provider.editValue[Good.columnToLabel[GoodEntry.columnClassification] + 'id'] = widget.good.classification?.id;
-      provider.editValue[Good.columnToLabel[GoodEntry.columnClassification]] = widget.good.classification?.name;
+      provider.editValue[Good.columnToLabel[GoodEntry.columnWarnDays]] =
+          widget.good.warnDays?.toString();
+      provider.editValue[Good.columnToLabel[GoodEntry.columnClassification] + 'id'] =
+          widget.good.classification?.id;
+      provider.editValue[Good.columnToLabel[GoodEntry.columnClassification]] =
+          widget.good.classification?.name;
     }
   }
 
@@ -82,7 +89,9 @@ class _AddGoodPageState extends State<AddGoodPage> {
         body: SingleChildScrollView(
           controller: _controller,
           child: Container(
-            decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg)),
             padding: EdgeInsets.only(top: sc.statusHeight() + 10, left: 10, right: 10),
             child: Column(
               children: <Widget>[
@@ -105,7 +114,9 @@ class _AddGoodPageState extends State<AddGoodPage> {
     return GestureDetector(
         onTap: () async {
           var result = await showModalBottomSheet(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15))),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15), topRight: Radius.circular(15))),
               context: context,
               isDismissible: false,
               builder: (context) {
@@ -113,8 +124,9 @@ class _AddGoodPageState extends State<AddGoodPage> {
               });
           setState(() {
             goodPhoto = result ?? goodPhoto;
-            goodPhotoImage = result == null ? Image.file(goodPhoto) : null;
+            goodPhotoImage = Image.file(goodPhoto);
             provider.goodPic = goodPhoto;
+            LogUtils.d('addPhoto', 'result = ' + result?.toString());
           });
         },
         child: Container(
@@ -123,7 +135,9 @@ class _AddGoodPageState extends State<AddGoodPage> {
               ? Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pink2blue), shape: BoxShape.circle),
+                      gradient: LinearGradient(
+                          begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pink2blue),
+                      shape: BoxShape.circle),
                   child: Image(
                     width: 40,
                     color: Colors.white,
@@ -140,7 +154,8 @@ class _AddGoodPageState extends State<AddGoodPage> {
   _buildEditMessage() {
     return Container(
         margin: EdgeInsets.only(top: 10, bottom: 20),
-        decoration: BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(15)),
+        decoration:
+            BoxDecoration(color: Colors.transparent, borderRadius: BorderRadius.circular(15)),
         child: ListView.separated(
           physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
@@ -170,7 +185,9 @@ class _AddGoodPageState extends State<AddGoodPage> {
     Widget child;
     InputType currentType = inputContent.values.toList()[index];
     String tag = inputContent.keys.toList()[index];
-    if (currentType == InputType.text || InputType.double == currentType || InputType.int == currentType) {
+    if (currentType == InputType.text ||
+        InputType.double == currentType ||
+        InputType.int == currentType) {
       if (tag == '有效天数') {
         child = EditWidget(
           tag,
@@ -209,7 +226,8 @@ class _AddGoodPageState extends State<AddGoodPage> {
         onTap: () {
           addGood();
         },
-        gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: details1),
+        gradient:
+            LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: details1),
         borderRadius: BorderRadius.circular(15),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50),
@@ -227,7 +245,10 @@ class _AddGoodPageState extends State<AddGoodPage> {
       ToastUtils.show('请输入正确的有效天数');
     }
 
-    String validDate = DateTime.parse(prdDateKey.currentState.selected + '00:00:00').add(Duration(days: validDays)).toString().substring(0, 11);
+    String validDate = DateTime.parse(prdDateKey.currentState.selected + '00:00:00')
+        .add(Duration(days: validDays))
+        .toString()
+        .substring(0, 11);
 
     expDateKey.currentState.setInput(validDate);
   }

@@ -17,11 +17,18 @@ class _SplashPageState extends State<SplashPage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    ScUtils.init(context);
+    ScUtils.init(
+      context,
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
+      ),
+    );
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
+          gradient:
+              LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: pageBg),
         ),
       ),
     );

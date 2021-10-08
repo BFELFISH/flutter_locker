@@ -9,6 +9,7 @@ import 'package:locker/providers/good_list_provider.dart';
 import 'package:locker/providers/location_detail_provider.dart';
 import 'package:locker/providers/location_provider.dart';
 import 'package:locker/routes/routes.dart';
+import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Routes.configureRouters(FluroRouter());
     SqlManager.init();
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider.value(value: ClassListProvider()),
@@ -37,9 +39,12 @@ class MyApp extends StatelessWidget {
         locale: Locale('zh'),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: Routes.router.generator,
-        theme: ThemeData(
-          primaryColor: main_color
-        ),
+        theme: ThemeData(primaryColor: main_color),
+        builder: (context, child) {
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0, boldText: false),
+              child: child);
+        },
       ),
     );
   }

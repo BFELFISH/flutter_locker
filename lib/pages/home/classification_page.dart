@@ -6,9 +6,9 @@ import 'package:locker/utils/log_utils.dart';
 import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
+import 'package:locker/widgets/classification/classification_list_widget.dart';
 import 'package:locker/widgets/good/good_list_widget.dart';
 
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/classification/classification_list_widget.dart';
 
 class ClassificationPage extends StatefulWidget {
   @override

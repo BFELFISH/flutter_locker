@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/screenutil.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ScUtils sc = ScUtils();
 
@@ -7,11 +7,11 @@ class ScUtils {
   static double sysBottom;
 
   ///启动时调用
-  static init(context) {
+  static init(context,constraints) {
     ///屏幕适配插件初始化
     ///[width] UI标注宽度
     ///[height] UI标注高度
-    ScreenUtil.init(context, width: 360, height: 640);
+    ScreenUtil.init(constraints);
 
     sysBottom = MediaQuery.of(context).padding.bottom;
   }
@@ -46,17 +46,17 @@ class ScUtils {
 
   ///状态栏的高度:dp
   double statusHeight() {
-    return ScreenUtil.statusBarHeight;
+    return ScreenUtil().statusBarHeight;
   }
 
   ///屏幕宽度:dp
   double screenWidth() {
-    return ScreenUtil.screenWidth;
+    return ScreenUtil().screenWidth;
   }
 
   ///屏幕高度:dp
   double screenHeight() {
-    return ScreenUtil.screenHeight;
+    return ScreenUtil().screenHeight;
   }
 
   double screenPaddingBottom() {

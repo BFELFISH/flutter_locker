@@ -7,9 +7,9 @@ import 'package:locker/utils/sc_utils.dart';
 import 'package:locker/values/colors.dart';
 import 'package:locker/views/ink_btn.dart';
 import 'package:locker/widgets/drawer_left_widget.dart';
+import 'package:locker/widgets/good/good_list_widget.dart';
+import 'package:locker/widgets/good/search_widget.dart';
 
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_widget.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/search_widget.dart';
 
 class GoodListPage extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _GoodListPageState extends State<GoodListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());

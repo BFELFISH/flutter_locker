@@ -6,14 +6,14 @@ import 'package:locker/pages/add_classification_page.dart';
 import 'package:locker/pages/add_good_page.dart';
 import 'package:locker/pages/add_location_detail_page.dart';
 import 'package:locker/pages/add_location_page.dart';
+import 'package:locker/pages/home/home_page.dart';
+import 'package:locker/pages/home/splash_page.dart';
 import 'package:locker/pages/manage_class_page.dart';
 import 'package:locker/pages/manage_location_page.dart';
 import 'package:locker/pages/password_page.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/home_page.dart';
 import 'package:locker/pages/select_class_page.dart';
 import 'package:locker/pages/select_location_details_page.dart';
 import 'package:locker/pages/select_location_page.dart';
-import 'file:///E:/flutterCodes/locker/locker/lib/pages/home/splash_page.dart';
 import 'package:locker/utils/log_utils.dart';
 
 class RouterHandler {

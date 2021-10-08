@@ -13,7 +13,8 @@ import 'package:locker/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
-import 'file:///E:/flutterCodes/locker/locker/lib/widgets/good/good_list_item_widget.dart';
+import 'good_list_item_widget.dart';
+
 
 class GoodListWidget extends StatefulWidget {
   bool isAll;
